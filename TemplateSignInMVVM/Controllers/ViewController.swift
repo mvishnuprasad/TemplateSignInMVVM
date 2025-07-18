@@ -11,8 +11,20 @@ class ViewController: UIViewController, SignInDelegate {
     func getUserData(email: String, password: String, name: String) {
         print("\(email)")
     }
+    let networkService: SignInNetworkService
+    let viewModel: SignInViewModel
+
+    init(networkService: SignInNetworkService ) {
+        self.networkService = networkService
+        self.viewModel = SignInViewModel(networkService: networkService)
+        super.init(nibName: nil, bundle: nil)
+
+    }
     
-    private var viewModel = SignInViewModel(networkService: SignInNetworkService())
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
